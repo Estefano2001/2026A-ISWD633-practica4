@@ -79,7 +79,7 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 ### Inspeccionar la imagen creada
 # COMPLETAR CON UNA CAPTURA
 
-![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica4/blob/630edf02d2426420e92433b7e462dc712e62c02b/imagencreada.jpeg)
 
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
