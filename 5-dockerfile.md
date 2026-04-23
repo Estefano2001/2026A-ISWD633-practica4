@@ -53,17 +53,39 @@ docker build -t <nombre imagen>:<tag> .
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
-
+Dockerfile
+FROM rockylinux:8
+RUN yum update -y
+RUN yum install -y httpd
+COPY ./web /var/www/html
+EXPOSE 80
+CMD ["apachectl", "-D", "FOREGROUND"]
 ```
-
+```
+ docker build -t mi-apache:1.0 .
+```
 **¿Cuántos pasos se han ejecutado?**
+
+#### [1/4] FROM: Descarga y preparación de la imagen base (Rocky Linux 8).
+
+#### [2/4] RUN yum update -y: Actualización de los paquetes del sistema.
+
+#### [3/4] RUN yum install -y httpd: Instalación del servidor web Apache.
+
+#### [4/4] COPY ./web /var/www/html: Copia de tus archivos locales al contenedor.
+
 # RESPONDER 
 
 ### Inspeccionar la imagen creada
 # COMPLETAR CON UNA CAPTURA
 
+![image alt](https://github.com/Estefano2001/2026A-ISWD633-practica1/blob/9deb1db279f90890069e2994a3fbf4abaadc39a7/Lista.jpeg)
+
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+
+#### Se volvieron a ejecutar los mmismos cuatro de la anterior 
+#### Creo que para esta vez se ejecuto mas rapido que la anteriro, debe ser por la memoria del cache 
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -75,13 +97,19 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d -P --name contenedor-apache-v2 mi-apache:2.0
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
+
+#### 0.0.0.0:32769->80/tcp
+
 # COMPLETAR CON LA RESPUESTA
 
 **¿Qué es una imagen huérfana?**
+
+#### Son imágenes sin etiqueta,que no están asociadas a ningún contenedor. Se generan cuando reconstruyes imágenes y Docker descarta capas antiguas.
+
 # COMPLETAR CON LA RESPUESTA
 
 ### Identificar imágenes huérfanas
